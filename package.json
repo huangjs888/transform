@@ -1,6 +1,6 @@
 {
   "name": "@huangjs888/transform",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "style transform",
   "main": "lib/index.js",
   "unpkg": "dist/transform.min.js",
