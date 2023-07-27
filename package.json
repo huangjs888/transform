@@ -1,6 +1,6 @@
 {
   "name": "@huangjs888/transform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "style transform",
   "main": "src/index",
   "source": "src/index",
