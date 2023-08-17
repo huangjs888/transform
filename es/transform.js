@@ -7,31 +7,23 @@
  */
 
 import Matrix from './matrix';
-
-export type TransformRaw = {
-  a?: number;
-  k?: number;
-  x?: number;
-  y?: number;
-};
-
 export default class Transform {
-  a: number | undefined;
-  k: number | undefined;
-  x: number | undefined;
-  y: number | undefined;
-
-  constructor(t: TransformRaw) {
+  constructor(t) {
     this.a = t.a;
     this.k = t.k;
     this.x = t.x;
     this.y = t.y;
   }
   static identity() {
-    return new Transform({ a: 0, k: 1, x: 0, y: 0 });
+    return new Transform({
+      a: 0,
+      k: 1,
+      x: 0,
+      y: 0
+    });
   }
   toRaw() {
-    const raw: TransformRaw = {};
+    const raw = {};
     if (typeof this.a === 'number') {
       raw.a = this.a;
     }
@@ -47,7 +39,12 @@ export default class Transform {
     return raw;
   }
   toString() {
-    const { a = 0, k = 1, x = 0, y = 0 } = this;
+    const {
+      a = 0,
+      k = 1,
+      x = 0,
+      y = 0
+    } = this;
     const matrix = new Float32Array(16);
     Matrix.identity(matrix);
     Matrix.translate(matrix, x, y, 0);

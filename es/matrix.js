@@ -7,10 +7,9 @@
  */
 
 const DEG_TO_RAD = Math.PI / 180;
-
 const Matrix = {
   // 将矩阵 lhm 与矩阵 rhm 相乘，然后保存到矩阵 rm 中
-  multiply: function multiply(rm: Float32Array, lhm: Float32Array, rhm: Float32Array) {
+  multiply: function multiply(rm, lhm, rhm) {
     const a11 = lhm[0];
     const a12 = lhm[4];
     const a13 = lhm[8];
@@ -61,7 +60,7 @@ const Matrix = {
     rm[15] = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
   },
   // 将矩阵 m 设置为初始矩阵
-  identity: function identity(m: Float32Array) {
+  identity: function identity(m) {
     for (let i = 0; i < 16; i++) {
       m[i] = 0;
     }
@@ -70,13 +69,13 @@ const Matrix = {
     }
   },
   // 将矩阵 m 按照 x, y, z 平移
-  translate: function translate(m: Float32Array, x: number, y: number, z: number) {
+  translate: function translate(m, x, y, z) {
     for (let i = 0; i < 4; i++) {
       m[12 + i] += m[i] * x + m[4 + i] * y + m[8 + i] * z;
     }
   },
   // 将矩阵 m 按照 x, y, z 缩放
-  scale: function scale(m: Float32Array, x: number, y: number, z: number) {
+  scale: function scale(m, x, y, z) {
     for (let i = 0; i < 4; i++) {
       m[i] *= x;
       m[4 + i] *= y;
@@ -84,7 +83,7 @@ const Matrix = {
     }
   },
   // 将矩阵 m 围绕 x, y, z 旋转a度
-  rotate: function rotate(m: Float32Array, a: number, x: number, y: number, z: number) {
+  rotate: function rotate(m, a, x, y, z) {
     const rm = new Float32Array(16);
     rm[3] = 0;
     rm[7] = 0;
@@ -157,7 +156,7 @@ const Matrix = {
     Matrix.multiply(m, m, rm);
   },
   // 将矩阵 m 按照欧拉角 xa, ya, za 旋转
-  rotateEuler: function rotateEuler(m: Float32Array, xa: number, ya: number, za: number) {
+  rotateEuler: function rotateEuler(m, xa, ya, za) {
     const rm = new Float32Array(16);
     const xra = xa * DEG_TO_RAD;
     const yra = ya * DEG_TO_RAD;
@@ -189,13 +188,7 @@ const Matrix = {
     Matrix.multiply(m, m, rm);
   },
   // 将矩阵 m 进行perspective变换
-  perspective: function perspective(
-    m: Float32Array,
-    fovy: number,
-    aspect: number,
-    zNear: number,
-    zFar: number,
-  ) {
+  perspective: function perspective(m, fovy, aspect, zNear, zFar) {
     const f = 1 / Math.tan(fovy * (Math.PI / 360.0));
     const rangeReciprocal = 1 / (zNear - zFar);
     m[0] = f / aspect;
@@ -214,7 +207,6 @@ const Matrix = {
     m[13] = 0;
     m[14] = 2 * zFar * zNear * rangeReciprocal;
     m[15] = 0;
-  },
+  }
 };
-
 export default Matrix;
