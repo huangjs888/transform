@@ -2,13 +2,13 @@
  * @Author: Huangjs
  * @Date: 2023-04-27 18:24:36
  * @LastEditors: Huangjs
- * @LastEditTime: 2023-08-16 17:31:23
+ * @LastEditTime: 2023-09-12 16:44:49
  * @Description: ******
  */
 
 import Matrix from './matrix';
 
-export type TransformRaw = {
+type Raw = {
   a?: number;
   k?: number;
   x?: number;
@@ -16,22 +16,30 @@ export type TransformRaw = {
 };
 
 export default class Transform {
-  a: number | undefined;
-  k: number | undefined;
-  x: number | undefined;
-  y: number | undefined;
+  a?: number;
+  k?: number;
+  x?: number;
+  y?: number;
 
-  constructor(t: TransformRaw) {
-    this.a = t.a;
-    this.k = t.k;
-    this.x = t.x;
-    this.y = t.y;
+  constructor(t: Raw = {}) {
+    if (typeof t.a === 'number') {
+      this.a = t.a;
+    }
+    if (typeof t.k === 'number') {
+      this.k = t.k;
+    }
+    if (typeof t.x === 'number') {
+      this.x = t.x;
+    }
+    if (typeof t.y === 'number') {
+      this.y = t.y;
+    }
   }
   static identity() {
     return new Transform({ a: 0, k: 1, x: 0, y: 0 });
   }
   toRaw() {
-    const raw: TransformRaw = {};
+    const raw: Raw = {};
     if (typeof this.a === 'number') {
       raw.a = this.a;
     }
