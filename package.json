@@ -1,7 +1,7 @@
 {
   "name": "@huangjs888/transform",
   "version": "1.2.0",
-  "description": "Style Transform",
+  "description": "Style transform",
   "types": "./types/index.d.ts",
   "module": "./es/transform.min.js",
   "main": "./lib/transform.min.js",

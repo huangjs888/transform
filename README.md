@@ -2,19 +2,40 @@
  * @Author: Huangjs
  * @Date: 2021-05-10 15:55:29
  * @LastEditors: Huangjs
- * @LastEditTime: 2023-07-26 17:53:00
+ * @LastEditTime: 2023-10-09 15:38:51
  * @Description: ******
 -->
+
 ## transform
-css3样式：
-transform: matrix3d(
-  1, 0, 0, 0,
-  0, 1, 0, 0,
-  0, 0, 1, 0,
-  0, 0, 0, 1
-);
+
+样式变换
+
+### 安装使用
+
+```sh
+
+npm install @huangjs888/transform --save
+
+```
+
+### css3样式：
+
+```css
+
+body{
+  transform: matrix3d(
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+  );
+}
+  
+```
+
 ### 使用方法
-```javascript
+
+```js
 
 import Transform from '@huangjs888/transform';
 
