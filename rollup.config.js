@@ -2,7 +2,7 @@
  * @Author: Huangjs
  * @Date: 2023-08-09 11:24:45
  * @LastEditors: Huangjs
- * @LastEditTime: 2023-08-21 14:32:51
+ * @LastEditTime: 2023-10-16 15:21:13
  * @Description: ******
  */
 
@@ -22,6 +22,7 @@ const config = {
     {
       file: `${pathname}/transform${NODE_ENV === 'production' ? '.min' : ''}.js`,
       format: MOD_ENV,
+      exports: 'named',
       // umd时挂在全局变量下的模块名称
       name: MOD_ENV === 'umd' ? 'Transform' : undefined,
       sourcemap: true,
